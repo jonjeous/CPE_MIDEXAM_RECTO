@@ -1,0 +1,12 @@
+---
+- name: Install Prometheus on Ubuntu
+  apt:
+    name: prometheus
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Start Prometheus service on Ubuntu
+  systemd:
+    name: prometheus
+    state: started
+  when: ansible_distribution == "Ubuntu"

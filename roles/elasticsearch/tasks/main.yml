@@ -1,0 +1,22 @@
+---
+- name: Add Elasticsearch APT key (Ubuntu)
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+  when: ansible_distribution == "Ubuntu"
+  become: true
+
+- name: Add Elasticsearch repository (Ubuntu)
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+  become: true
+
+- name: Install Elasticsearch (Ubuntu)
+  apt:
+    name: elasticsearch
+    state: present
+  when: ansible_distribution == "Ubuntu"
+  become: true
