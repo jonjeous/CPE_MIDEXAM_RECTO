@@ -1,13 +1,13 @@
 ---
 - name: Install InfluxDB
-  yum:
+  apt:
     name: influxdb
     state: present
-  when: ansible_distribution == "CentOS"
+  when: ansible_distribution == "Ubuntu"
 
 - name: Start InfluxDB service
   service:
     name: influxdb
     state: started
     enabled: yes
-  when: ansible_distribution == "CentOS"
+  when: ansible_distribution == "Ubuntu"

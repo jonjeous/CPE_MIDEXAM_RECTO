@@ -1,22 +1,24 @@
 ---
-- name: Add Elasticsearch APT key (Ubuntu)
-  apt_key:
-    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+- name: Add Elasticsearch RPM key (CentOS)
+  rpm_key:
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     state: present
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "CentOS"
   become: true
 
-- name: Add Elasticsearch repository (Ubuntu)
-  apt_repository:
-    repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+- name: Add Elasticsearch repository (CentOS)
+  yum_repository:
+    name: elasticsearch
+    description: Elasticsearch repository for 7.x packages
+    baseurl: https://artifacts.elastic.co/packages/7.x/yum
+    gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     state: present
-    update_cache: yes
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "CentOS"
   become: true
 
-- name: Install Elasticsearch (Ubuntu)
-  apt:
+- name: Install Elasticsearch (CentOS)
+  yum:
     name: elasticsearch
     state: present
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "CentOS"
   become: true

@@ -4,10 +4,11 @@
   tasks:
 
   - name: update repository index (CentOS)
-    tags: always
     yum:
-      name: '*'
+      update_cache: yes
+    changed_when: false
     when: ansible_distribution == "CentOS"
+    become: true
 
   - name: install updates (Ubuntu)
     tags: always
@@ -15,18 +16,20 @@
       update_cache: yes
     changed_when: false
     when: ansible_distribution == "Ubuntu"
+    become: true
 
 - hosts: elasticsearch
   become: true
   roles:
     - elasticsearch
-    - nagios
+    - grafana
+    - lampstack
 
 - hosts: kibana
   become: true
   roles:
     - kibana
-    - grafana
+    - nagios
 
 - hosts: logstash
   become: true
@@ -38,4 +41,3 @@
   become: true
   roles:
     - influxdb
-    - lampstack
