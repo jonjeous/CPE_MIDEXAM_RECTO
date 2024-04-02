@@ -1,23 +1,23 @@
 [ubuntu_servers]
-192.168.56.129 #Server1
-192.168.56.130 #Server2
-192.168.56.128 #ManagedNode
+192.168.56.113 #Server1
+192.168.56.115 #Server2
+192.168.56.114 #ManagedNode
 
 [centos_servers]
-192.168.56.125 #CentOS
+192.168.56.116 #CentOS
 
 
 [elasticsearch]
-192.168.56.125 #Host4
+192.168.56.116 #Host4
 
 
 [kibana]
-192.168.56.129 #Host2
+192.168.56.113 #Host2
 
 
 [logstash]
-192.168.56.130 #Host3 
+192.168.56.115 #Host3 
 
 
 [influxdb]
-192.168.56.128 #Host1
+192.168.56.114 #Host1
